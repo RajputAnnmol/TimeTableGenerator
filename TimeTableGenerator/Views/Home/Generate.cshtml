@@ -1,0 +1,28 @@
+﻿@model TimeTableGenerator.Models.TimeTable
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TimeTable</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+                <th>Hours</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subject in Model.Subjects)
+            {
+                <tr>
+                    <td>@subject.SubjectName</td>
+                    <td>@subject.Hours</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

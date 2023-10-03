@@ -1,0 +1,43 @@
+﻿@model TimeTableGenerator.Models.TimeTable
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TimeTable</title>
+</head>
+<body>
+    <form asp-controller="Home" asp-action="Generate" method="post">
+        <label for="workingDays">Working Days:</label>
+        <input type="number" id="workingDays" name="workingDays" required min="1" max="7" />
+        <br /><br />
+
+        <label for="subjectsPerDay">Subjects Per Day:</label>
+        <input type="number" id="subjectsPerDay" name="subjectsPerDay" required min="1" max="9" />
+        <br /><br />
+
+        <label for="totalSubjects">Total Subjects:</label>
+        <input type="number" id="totalSubjects" name="totalSubjects" required min="1" max="8" />
+        <br /><br />
+        <label>Total Hours of Week</label>
+        <input type="number" id="totalHoursOfWeek" readonly min="1" />
+        <br /><br />
+        <button type="submit">Generate</button>
+    </form>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        function calculateTotalHours() {
+            var subjectsPerDay = parseInt($("#subjectsPerDay").val());
+            var workingDays = parseInt($("#workingDays").val());
+            var totalHoursOfWeek = subjectsPerDay * workingDays;
+
+            $("#totalHoursOfWeek").val(totalHoursOfWeek);
+        }
+
+        $("#subjectsPerDay, #workingDays").on("input", calculateTotalHours);
+    });
+</script>
